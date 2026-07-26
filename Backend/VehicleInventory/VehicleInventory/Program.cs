@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web;
 using System.Text.Json.Serialization;
 using VehicleInventory.DBManager.Context;
 using VehicleInventory.DBManager.Repositories;
@@ -15,6 +16,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services
+    .AddAuthentication(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<VehicleInventoryContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VehicleInventory")));
@@ -46,6 +53,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseCors(AngularDevClient);
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

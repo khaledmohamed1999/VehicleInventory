@@ -58,6 +58,7 @@
 
 .nav__links {
   display: flex;
+  align-items: center;
   gap: 1.75rem;
 
   a {
@@ -72,6 +73,25 @@
       color: #ffffff;
       border-bottom-color: var(--color-accent);
     }
+  }
+}
+
+.nav__user {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.nav__auth-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-accent);
   }
 }
 

@@ -92,11 +92,11 @@ namespace VehicleInventory.Services
                 throw new ConflictException($"A vehicle with license plate '{licensePlate}' already exists.");
         }
 
-        private async Task CheckAssigningToActiveVehicle(VehicleStatus status, int? driverId)
+        private async Task CheckAssigningToActiveVehicle(VehicleStatus status, int? id)
         {
             bool vehicleIsActive = status == VehicleStatus.Active;
-            if (!vehicleIsActive && driverId != null)
-                throw new ConflictException($"Can't assign a driver to a vehicle that is not in an active state.");
+            if (!vehicleIsActive && id != null)
+                throw new ConflictException($"Can't assign a driver to a vehicle that is not active.");
         }
     }
 }

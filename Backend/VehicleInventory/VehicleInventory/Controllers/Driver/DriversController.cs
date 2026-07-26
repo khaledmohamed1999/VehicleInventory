@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VehicleInventory.Services;
 using VehicleInventory.DBManager.Models.DTOs;
 using VehicleInventory.DBManager.Models.Entities;
@@ -6,6 +7,7 @@ using VehicleInventory.DBManager.Models.Entities;
 namespace VehicleInventory.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]/[action]")]
     public class DriversController : ControllerBase
     {
@@ -31,7 +33,7 @@ namespace VehicleInventory.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<DriverDto>>> SearchDrivers([FromBody] DriverSearchModelDto driverSearchModel)
+        public async Task<ActionResult<DriverDto>> SearchDrivers([FromBody] DriverSearchModelDto driverSearchModel)
         {
             var drivers = await _driverService.SearchDrivers(driverSearchModel);
             return Ok(drivers);
