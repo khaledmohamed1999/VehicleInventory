@@ -1,0 +1,38 @@
+<section class="driver-form">
+  <header class="driver-form__header">
+    <h1>Search Drivers</h1>
+  </header>
+
+  @if (errorMessage) {
+    <p class="driver-form__error">{{ errorMessage }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="driver-form__grid">
+    <label class="field">
+      <span>Name</span>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Jane Doe"
+        [class.field--invalid]="form.controls.name.invalid && form.controls.name.touched"
+      />
+    </label>
+
+    <label class="field">
+      <span>Level</span>
+      <select formControlName="level">
+        <option [ngValue]="null">None</option>
+        @for (level of driverLevels; track level) {
+          <option [value]="level">{{ level }}</option>
+        }
+      </select>
+    </label>
+
+    <div class="driver-form__actions">
+      <a class="btn" routerLink="/drivers">Back</a>
+      <button type="submit" class="btn btn--primary" [disabled]="isSearching">
+        {{ isSearching ? 'Searching...' : 'Search driver(s)' }}
+      </button>
+    </div>
+  </form>
+</section>

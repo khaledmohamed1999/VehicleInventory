@@ -1,0 +1,12 @@
+<app-driver-form-search 
+    (search)="searchDrivers($event)"
+    [isSearching]="isSearching"
+    [errorMessage]="errorMessage" ></app-driver-form-search>
+
+<hr>
+
+<app-driver-list-search 
+    [drivers]="drivers"
+    [errorMessage]="errorMessage"
+    (driverDeleted)="deleteDriver()"
+    (errorDuringDelete)="setErrorMessage($event)"></app-driver-list-search>

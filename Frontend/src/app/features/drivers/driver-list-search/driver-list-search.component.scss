@@ -1,0 +1,88 @@
+.driver-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+
+.driver-button__header{
+  display: flex;
+  gap: 20px;
+}
+
+.driver-list__status {
+  color: var(--color-text-muted);
+  padding: 1rem 0;
+
+  &--error {
+    color: var(--color-danger);
+  }
+}
+
+.driver-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.driver-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.driver-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  h2 {
+    font-size: 1.05rem;
+  }
+}
+
+.driver-card__details {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+
+  dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.driver-card__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 480px) {
+  .driver-list__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .driver-grid {
+    grid-template-columns: 1fr;
+  }
+}

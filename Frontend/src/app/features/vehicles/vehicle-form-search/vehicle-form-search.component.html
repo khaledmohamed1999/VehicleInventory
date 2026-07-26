@@ -1,0 +1,74 @@
+<section class="vehicle-form">
+  <header class="vehicle-form__header">
+    <h1>Search Vehicles</h1>
+  </header>
+
+  @if (errorMessage) {
+    <p class="vehicle-form__error">{{ errorMessage }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="vehicle-form__grid">
+    <label class="field">
+      <span>License plate</span>
+      <input
+        type="text"
+        formControlName="licensePlate"
+        placeholder="ABC-1234"
+      />
+    </label>
+
+    <label class="field">
+      <span>Driver</span>
+      <select formControlName="driverId">
+        <option [ngValue]="null">None</option>
+        @for (driver of drivers; track driver.id) {
+          <option [ngValue]="driver.id">{{ driver.name }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Model</span>
+      <input type="text" formControlName="model" placeholder="FH16" />
+    </label>
+
+    <label class="field">
+      <span>Year</span>
+      <input
+        type="number"
+        formControlName="year"
+        [class.field--invalid]="form.controls.year.invalid && form.controls.year.touched"
+      />
+      @if (form.controls.year.invalid && form.controls.year.touched) {
+        <small class="field__error">Enter a year between 1980 and 2100.</small>
+      }
+    </label>
+
+    <label class="field">
+      <span>Status</span>
+      <select formControlName="status">
+        <option [ngValue]="null">None</option>
+        @for (status of vehicleStatuses; track status) {
+          <option [value]="status">{{ status | splitPascalCase }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Type</span>
+      <select formControlName="type">
+        <option [ngValue]="null">None</option>
+        @for (type of vehicleTypes; track type) {
+          <option [value]="type">{{ type }}</option>
+        }
+      </select>
+    </label>
+
+    <div class="vehicle-form__actions">
+      <a class="btn" routerLink="/vehicles">Back</a>
+      <button type="submit" class="btn btn--primary" [disabled]="isSearching">
+        {{ isSearching ? 'Searching...' : 'Search vehicle(s)' }}
+      </button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,12 @@
+<app-vehicle-form-search 
+    (search)="searchVehicles($event)"
+    [isSearching]="isSearching"
+    [errorMessage]="errorMessage" ></app-vehicle-form-search>
+
+<hr>
+
+<app-vehicle-list-search 
+    [vehicles]="vehicles"
+    [errorMessage]="errorMessage"
+    (vehicleDeleted)="deleteVehicle()"
+    (errorDuringDelete)="setErrorMessage($event)"></app-vehicle-list-search>

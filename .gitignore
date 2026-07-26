@@ -1,0 +1,33 @@
+## ---------- .NET / Visual Studio ----------
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dll
+*.pdb
+
+## ---------- Node / Angular ----------
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## ---------- Environment / local overrides ----------
+# Keep appsettings.json and environment.ts committed — they only contain
+# a tenant ID and client IDs (public identifiers, not secrets; this app
+# uses PKCE for the SPA and validates bearer tokens on the API, so no
+# client secret is ever needed). If a client secret is ever introduced,
+# add its specific file here explicitly rather than relying on a broad rule.
+appsettings.Local.json
+*.local.json
+
+## ---------- OS / editor noise ----------
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json

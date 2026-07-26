@@ -1,0 +1,42 @@
+<section class="driver-list">
+  <header class="driver-list__header">
+    <h1>Drivers</h1>
+    <div class="driver-button__header">
+      <a class="btn btn--primary" routerLink="/drivers/new">+ Add driver</a>
+      <a class="btn btn--primary" routerLink="/drivers/search">Search for driver(s)</a>
+    </div>
+  </header>
+
+  @if (isLoading) {
+    <p class="driver-list__status">Loading drivers...</p>
+  }
+
+  @if (errorMessage) {
+    <p class="driver-list__status driver-list__status--error">{{ errorMessage }}</p>
+  }
+
+  @if (!isLoading && drivers.length === 0 && !errorMessage) {
+    <p class="driver-list__status">No drivers yet. Add your first one.</p>
+  }
+
+  <div class="driver-grid">
+    @for (driver of drivers; track driver.id) {
+      <article class="driver-card">
+        <div class="driver-card__top">
+          <h2>{{ driver.name }}</h2>
+          <span class="badge badge--active">{{ driver.level }}</span>
+        </div>
+
+        <dl class="driver-card__details">
+          <div><dt>Phone</dt><dd>{{ driver.phone || '—' }}</dd></div>
+          <div><dt>Date of birth</dt><dd>{{ driver.dob | date: 'mediumDate' }}</dd></div>
+        </dl>
+
+        <div class="driver-card__actions">
+          <a class="btn btn--small" [routerLink]="['/drivers', driver.id, 'edit']">Edit</a>
+          <button class="btn btn--small btn--danger" (click)="deleteDriver(driver)">Delete</button>
+        </div>
+      </article>
+    }
+  </div>
+</section>

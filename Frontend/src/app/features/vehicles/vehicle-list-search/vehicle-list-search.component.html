@@ -1,0 +1,26 @@
+<section class="vehicle-list">
+  <div class="vehicle-grid">
+    @for (vehicle of vehicles; track vehicle.id) {
+      <article class="vehicle-card">
+        <div class="vehicle-card__top">
+          <span class="vehicle-card__plate">{{ vehicle.licensePlate }}</span>
+          <span class="badge" [class]="'badge--' + vehicle.status.toLowerCase()">{{ vehicle.status | splitPascalCase }}</span>
+        </div>
+
+        <h2 class="vehicle-card__model">{{ vehicle.model || 'Unnamed model' }}</h2>
+
+        <dl class="vehicle-card__details">
+          <div><dt>Year</dt><dd>{{ vehicle.year }}</dd></div>
+          <div><dt>Type</dt><dd>{{ vehicle.type }}</dd></div>
+          <div><dt>Mileage</dt><dd>{{ vehicle.mileage | number }} km</dd></div>
+          <div><dt>Driver</dt><dd>{{ vehicle.assignedDriver?.name || '—' }}</dd></div>
+        </dl>
+
+        <div class="vehicle-card__actions">
+          <a class="btn btn--small" [routerLink]="['/vehicles', vehicle.id, 'edit']">Edit</a>
+          <button class="btn btn--small btn--danger" (click)="deleteVehicle(vehicle)">Delete</button>
+        </div>
+      </article>
+    }
+  </div>
+</section>

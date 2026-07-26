@@ -1,0 +1,19 @@
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" routerLink="/vehicles" (click)="closeMenu()">
+      <span class="nav__mark">VI</span>
+      <span class="nav__wordmark">Vehicle Inventory</span>
+    </a>
+
+    <button class="nav__toggle" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav__links" [class.nav__links--open]="isMenuOpen()">
+      <a routerLink="/vehicles" routerLinkActive="active" (click)="closeMenu()">Vehicles</a>
+      <a routerLink="/drivers" routerLinkActive="active" (click)="closeMenu()">Drivers</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,46 @@
+<section class="vehicle-list">
+  <header class="vehicle-list__header">
+    <h1>Vehicles</h1>
+    <div class="vehicle-button__header">
+      <a class="btn btn--primary" routerLink="/vehicles/new">+ Add vehicle</a>
+      <a class="btn btn--primary" routerLink="/vehicles/search">Search for vehicle(s)</a>
+    </div>
+  </header>
+
+  @if (isLoading) {
+    <p class="vehicle-list__status">Loading vehicles...</p>
+  }
+
+  @if (errorMessage) {
+    <p class="vehicle-list__status vehicle-list__status--error">{{ errorMessage }}</p>
+  }
+
+  @if (!isLoading && vehicles.length === 0 && !errorMessage) {
+    <p class="vehicle-list__status">No vehicles yet. Add your first one.</p>
+  }
+
+  <div class="vehicle-grid">
+    @for (vehicle of vehicles; track vehicle.id) {
+      <article class="vehicle-card">
+        <div class="vehicle-card__top">
+          <span class="vehicle-card__plate">{{ vehicle.licensePlate }}</span>
+          <span class="badge" [class]="'badge--' + vehicle.status.toLowerCase()">{{ vehicle.status | splitPascalCase }}</span>
+        </div>
+
+        <h2 class="vehicle-card__model">{{ vehicle.model || 'Unnamed model' }}</h2>
+
+        <dl class="vehicle-card__details">
+          <div><dt>Year</dt><dd>{{ vehicle.year }}</dd></div>
+          <div><dt>Type</dt><dd>{{ vehicle.type }}</dd></div>
+          <div><dt>Mileage</dt><dd>{{ vehicle.mileage | number }} km</dd></div>
+          <div><dt>Driver</dt><dd>{{ vehicle.assignedDriver?.name || '—' }}</dd></div>
+        </dl>
+
+        <div class="vehicle-card__actions">
+          <a class="btn btn--small" [routerLink]="['/vehicles', vehicle.id, 'edit']">Edit</a>
+          <button class="btn btn--small btn--danger" (click)="deleteVehicle(vehicle)">Delete</button>
+        </div>
+      </article>
+    }
+  </div>
+</section>

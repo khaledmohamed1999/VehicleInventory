@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+  --color-bg: #f7f6f4;
+  --color-surface: #ffffff;
+  --color-border: #e7e4de;
+  --color-text: #17171a;
+  --color-text-muted: #6c6a66;
+  --color-accent: #ff7e31;
+  --color-accent-soft: #fb9c63;
+  --color-accent-contrast: #17171a;
+  --color-danger: #d64545;
+  --color-success: #1f9d6e;
+  --color-warning: #ff7e31;
+  --color-retired: #9a978f;
+  --color-ink: #000000;
+
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-data: 'JetBrains Mono', 'Courier New', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shell-width: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease, background 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-soft));
+  border-color: var(--color-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn--danger {
+  color: var(--color-danger);
+}
+
+.btn--small {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge--active {
+  background: rgba(31, 157, 110, 0.12);
+  color: var(--color-success);
+}
+
+.badge--inmaintenance {
+  background: rgba(255, 126, 49, 0.12);
+  color: var(--color-warning);
+}
+
+.badge--retired {
+  background: rgba(154, 151, 143, 0.16);
+  color: var(--color-retired);
+}
