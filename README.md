@@ -2,6 +2,7 @@
 
 A full-stack CRUD application for managing a fleet's vehicles and drivers.
 
+- **Visual Studio Version:** Visual Studio 2026
 - **Backend:** ASP.NET Core (.NET 10) Web API — layered architecture (Controller → Service → Repository → EF Core), SQL Server
 - **Frontend:** Angular 18 (standalone components), TypeScript, SCSS
 
@@ -29,25 +30,23 @@ A full-stack CRUD application for managing a fleet's vehicles and drivers.
 
 > **On the `feature/sso` branch:** read [Testing the SSO branch](#testing-the-sso-branch) before running this — signing in requires either my tenant to have your account added as a guest, or your own Entra setup, and skipping straight to `dotnet run` will just end in a confusing failure.
 
-Either run it through Visual Studio, or via command line:
-
-```bash
-cd backend/VehicleInventory
-dotnet restore
-```
-
-Set up the database (first time only, or after pulling schema changes):
-```bash
-dotnet tool install --global dotnet-ef   # first time only, if not already installed
-dotnet ef database update
-```
-
 If your SQL Server instance isn't `localhost\SQLEXPRESS`, update the connection string in `appsettings.json` first.
 
-Run it:
+Set up the database (first time only, or after pulling schema changes):
+
+Open the Package Manager Console from Tools > NuGet Package Manager > Package manager Console
+
+```PM
+Add-Migration MigrationName
+Update-Database
+```
+
+Run through Visual Studio
 ```bash
 dotnet run
 ```
+
+Run it through Visual Studio:
 
 This opens your browser straight to `https://localhost:7046/swagger` automatically.
 
